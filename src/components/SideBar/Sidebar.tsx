@@ -60,7 +60,7 @@ const Sidebar = () => {
            initial={{ opacity: 0, x: -15 }}
            animate={{ opacity: 0.8, x: 0 }}
            transition={{ delay: isHovered ? 0.1 + i * 0.05 : 0 }}
-           className={`flex items-center gap-2 p-2 rounded-2xl cursor-pointer transition-colors duration-200
+           className={`flex items-center pl-3 gap-2 p-2 rounded-2xl cursor-pointer transition-colors duration-200
            ${activeLabel === label ? ' bg-gray-800  text-white' : 'text-white/60 hover:bg-white/10'}`}    >
           
            <div className=" flex items-center justify-center ">
@@ -69,7 +69,7 @@ const Sidebar = () => {
            </div>
 
       <div
-        className={`ml-3 overflow-hidden transition-all duration-300`}
+        className={` overflow-hidden transition-all duration-300`}
         style={{
           width: isHovered ? "auto" : 0,
           opacity: isHovered ? 1 : 0,
