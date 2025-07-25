@@ -22,20 +22,19 @@ const responsive = {
 
 const Carousel: React.FC<CaroselProps> = ({ movies , onSelectMovie }) => {
     const [movieImages, setMovieImages] = useState<{ movie: IMovie; path: string }[]>([]);
-
+   
     useEffect(() => {
-      const loadImagePaths = async () => {
-        const data = await Promise.all(
-          movies.map(async (movie) => {
-            const module = await import(`../../assets/${movie.CoverImage}`);
-            return { movie, path: module.default };
-          })
-        );
-        setMovieImages(data);
-      };
-  
-      loadImagePaths();
-    }, [movies]);
+        const loadImagePaths = async () => {
+          const data = movies.map((movie) => ({
+            movie,
+            path: `/assets/${movie.CoverImage}`, 
+          }));
+          setMovieImages(data);
+        };
+      
+        loadImagePaths();
+      }, [movies]);
+      
       
   return (
     <MultiCarousel
@@ -51,17 +50,18 @@ const Carousel: React.FC<CaroselProps> = ({ movies , onSelectMovie }) => {
       className="py-2"
     >
       {movieImages.map(({ movie, path }) => (
-        <div
-          key={movie.Id}
-          className="px-1 flex items-center cursor-pointer"
-          onClick={() => onSelectMovie(movie)}
-        >
-          <img
-            src={path}
-            alt={movie.Title}
-            className="w-full h-[220px] object-cover rounded-md"
-          />
-        </div>
+    <div
+      key={movie.Id}
+      className="px-1 flex items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 hover:z-10"
+      onClick={() => onSelectMovie(movie)}
+    >
+      <img
+        src={path}
+        alt={movie.Title}
+        className="w-full h-[220px] object-cover rounded-md shadow-md hover:shadow-xl"
+      />
+    </div>
+   
       ))}
 
 

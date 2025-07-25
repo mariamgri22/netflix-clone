@@ -22,9 +22,9 @@ const Content: React.FC<IContentProps> = ({ featured, trending, handleSelectMovi
       
         const loadImage = async () => {
           try {
-            const module = await import(`../../assets/${featured.CoverImage}`);
+            const imagePath = `/assets/${featured.CoverImage}`;
             if (isMounted) {
-              setImagePaths([module.default]);
+              setImagePaths([imagePath]);
             }
           } catch (error) {
             console.error('Error loading image:', error);
@@ -39,6 +39,7 @@ const Content: React.FC<IContentProps> = ({ featured, trending, handleSelectMovi
           isMounted = false;
         };
       }, [featured]);
+      
       
 
     return (
