@@ -10,12 +10,15 @@ const Content: React.FC<IContentProps> = ({ featured, trending, handleSelectMovi
     const [videoLoaded, setVideoLoaded] = useState(false);
 
     useEffect(() => {
+      setShowVideo(false); 
+    
       const timer = setTimeout(() => {
         setShowVideo(true);
       }, 2000);
-  
+    
       return () => clearTimeout(timer);
-    }, [featured]);
+    }, [featured?.Id]); 
+    
     
     useEffect(() => {
         let isMounted = true;
